@@ -2,7 +2,6 @@
 declare(strict_types=1);
 include_once('functions.php');
 $articles = getArticles();
-
 ?>
 <a href="add.php">Add article</a>
 <hr>
@@ -13,5 +12,5 @@ $articles = getArticles();
             <a href="article.php?id=<?= $id ?>">Read more</a>
         </div>
     <? endforeach; ?>
-</div>
+</div>  
 	

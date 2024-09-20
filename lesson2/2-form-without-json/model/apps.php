@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 function getApps() : array{
 	$lines = file('db/apps.txt');
 	$apps = [];
@@ -20,6 +20,5 @@ function appStrToArr(string $str) : array{
 function addApp(string $name, string $phone) : bool{
 	$dt = date("Y-d-m H:i:s");
 	$app = "$dt;$name;$phone\n";
-	file_put_contents('db/apps.txt', $app, FILE_APPEND);
-	return true;
+    return boolval(file_put_contents('db/apps.txt', $app, FILE_APPEND));
 }

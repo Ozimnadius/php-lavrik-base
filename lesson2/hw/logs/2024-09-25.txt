@@ -1,0 +1,1 @@
+{"time":"11:09:54","ip":"127.0.0.1","uri":"\/lesson2\/hw\/","referer":"http:\/\/php-lavrik-base\/lesson2\/"}

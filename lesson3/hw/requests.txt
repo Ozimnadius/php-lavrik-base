@@ -1,0 +1,15 @@
+SELECT * FROM `articles` JOIN `users` USING (user_id) ORDER BY articles.dt DESC LIMIT 20;
+SELECT * FROM `categories`;
+
+SELECT * FROM `articles` JOIN users USING (user_id) JOIN categories USING (category_id) WHERE `article_id`=1;
+SELECT * FROM `articles` JOIN article_tags USING (article_id) JOIN tags USING (tag_id) WHERE `article_id`=1;
+
+SELECT * FROM `categories` WHERE `category_id`=1;
+SELECT * FROM `categories` JOIN articles USING (category_id) WHERE `category_id`=1;
+
+SELECT * FROM `tags` WHERE `tag_id`=1;
+SELECT * FROM `tags` JOIN article_tags USING (tag_id) JOIN articles USING (article_id) WHERE `tag_id`=1;
+
+SELECT * FROM `users` WHERE `name`='Модератор';
+SELECT * FROM `users` JOIN articles USING(user_id) WHERE `name`='Модератор';
+

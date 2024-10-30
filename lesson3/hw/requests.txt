@@ -1,15 +1,15 @@
-SELECT * FROM `articles` JOIN `users` USING (user_id) ORDER BY articles.dt DESC LIMIT 20;
-SELECT * FROM `categories`;
+SELECT * FROM `articles` JOIN `users` USING (id_user) ORDER BY articles.dt_add DESC LIMIT 20;
+SELECT * FROM `cats`;
 
-SELECT * FROM `articles` JOIN users USING (user_id) JOIN categories USING (category_id) WHERE `article_id`=1;
-SELECT * FROM `articles` JOIN article_tags USING (article_id) JOIN tags USING (tag_id) WHERE `article_id`=1;
+SELECT * FROM `articles` JOIN users USING (`id_user`) JOIN cats USING (`id_cat`) WHERE `id_article`=1;
+SELECT * FROM `articles` JOIN articles_tags USING (`id_article`) JOIN tags USING (id_tag) WHERE `id_article`=1;
 
-SELECT * FROM `categories` WHERE `category_id`=1;
-SELECT * FROM `categories` JOIN articles USING (category_id) WHERE `category_id`=1;
+SELECT * FROM `cats` WHERE `id_cat`=1;
+SELECT * FROM `cats` JOIN articles USING (`id_cat`) WHERE `id_cat`=1;
 
-SELECT * FROM `tags` WHERE `tag_id`=1;
-SELECT * FROM `tags` JOIN article_tags USING (tag_id) JOIN articles USING (article_id) WHERE `tag_id`=1;
+SELECT * FROM `tags` WHERE `id_tag`=1;
+SELECT * FROM `tags` JOIN articles_tags USING (id_tag) JOIN articles USING (id_article) WHERE `id_tag`=1;
 
-SELECT * FROM `users` WHERE `name`='Модератор';
-SELECT * FROM `users` JOIN articles USING(user_id) WHERE `name`='Модератор';
+SELECT * FROM `users` WHERE `login`='admin';
+SELECT * FROM `users` JOIN articles USING(id_user) WHERE `login`='admin';
 

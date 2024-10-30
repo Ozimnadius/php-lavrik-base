@@ -1,15 +1,48 @@
-SELECT * FROM `articles` JOIN `users` USING (id_user) ORDER BY articles.dt_add DESC LIMIT 20;
-SELECT * FROM `cats`;
+1.1
+SELECT articles.*, users.login, users.name FROM articles
+JOIN users using(id_user)
+WHERE articles.status = 1
+ORDER BY dt_add DESC
+LIMIT 20;
+1.2
+SELECT * FROM cats ORDER BY title ASC
 
-SELECT * FROM `articles` JOIN users USING (`id_user`) JOIN cats USING (`id_cat`) WHERE `id_article`=1;
-SELECT * FROM `articles` JOIN articles_tags USING (`id_article`) JOIN tags USING (id_tag) WHERE `id_article`=1;
 
-SELECT * FROM `cats` WHERE `id_cat`=1;
-SELECT * FROM `cats` JOIN articles USING (`id_cat`) WHERE `id_cat`=1;
+2.1
+SELECT articles.*, users.login, users.name FROM articles
+JOIN users using(id_user)
+WHERE articles.status = 1 AND id_article=1;
+2.2
+SELECT * FROM cats WHERE id_cat=1
+2.3
+SELECT * FROM articles_tags
+JOIN tags using(id_tag)
+WHERE id_article=1
 
-SELECT * FROM `tags` WHERE `id_tag`=1;
-SELECT * FROM `tags` JOIN articles_tags USING (id_tag) JOIN articles USING (id_article) WHERE `id_tag`=1;
 
-SELECT * FROM `users` WHERE `login`='admin';
-SELECT * FROM `users` JOIN articles USING(id_user) WHERE `login`='admin';
+3.1
+SELECT * FROM cats WHERE url='osnovy-php'
+3.2 (we used id_article from 3.1)
+SELECT * FROM articles
+WHERE id_cat=1 AND status=1
 
+
+4.1
+SELECT * FROM tags WHERE url='file-upload'
+4.2 (we used id_tag from 4.1)
+SELECT * FROM articles_tags
+JOIN articles using(id_article)
+WHERE id_tag=1 AND status=1
+
+- hard mode by url
+SELECT articles.* FROM tags
+JOIN articles_tags using(id_tag)
+JOIN articles using(id_article)
+WHERE url='file-upload' AND status=1
+
+
+5.1
+SELECT * FROM users WHERE login='admin'
+5.2
+SELECT * FROM articles
+WHERE id_user=1 AND status=1

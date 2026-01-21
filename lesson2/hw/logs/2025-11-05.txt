@@ -1,0 +1,4 @@
+{"time":"10:32:28","ip":"127.0.0.1","uri":"\/lesson2\/hw\/","referer":"http:\/\/php-lavrik-base\/lesson2\/"}
+{"time":"10:32:32","ip":"127.0.0.1","uri":"\/lesson2\/hw\/article.php?id=5","referer":"http:\/\/php-lavrik-base\/lesson2\/hw\/"}
+{"time":"10:32:35","ip":"127.0.0.1","uri":"\/lesson2\/hw\/index.php","referer":"http:\/\/php-lavrik-base\/lesson2\/hw\/article.php?id=5"}
+{"time":"10:32:38","ip":"127.0.0.1","uri":"\/lesson2\/hw\/add.php","referer":"http:\/\/php-lavrik-base\/lesson2\/hw\/index.php"}

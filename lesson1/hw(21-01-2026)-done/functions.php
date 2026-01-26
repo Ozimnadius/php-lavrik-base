@@ -66,7 +66,6 @@ function saveArticles(array $articles): bool {
   return true;
 }
 
-
 /**
  * Изменить статью в базе данных.
  *

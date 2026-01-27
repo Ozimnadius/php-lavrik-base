@@ -1,5 +1,4 @@
 <?php
-
 // your functions may be here
 
 /* start --- black box */

@@ -1,0 +1,44 @@
+1.1
+SELECT articles.*, users.login, users.name FROM articles
+JOIN users USING(id_user)
+WHERE articles.status = 1
+ORDER BY dt DESC
+LIMIT 4;
+1.2
+SELECT * FROM categories ORDER BY title ASC
+
+2.1
+SELECT articles.*, users.login, users.name FROM articles
+JOIN users USING(id_user)
+WHERE articles.status = 1 AND id_article=18;
+2.2
+SELECT * FROM categories WHERE id_category=5
+2.3
+SELECT * FROM articles_tags
+JOIN tags USING(id_tag)
+WHERE id_article=16
+
+3.1
+SELECT * FROM categories WHERE url='programmirovanie'
+3.2
+SELECT * FROM articles WHERE id_category=6 AND status=1
+
+4.1
+SELECT * FROM tags WHERE url='web'
+4.2
+SELECT * FROM articles_tags
+JOIN articles USING(id_article)
+WHERE id_tag=4 AND status=1
+
+SELECT articles.* FROM tags
+JOIN articles_tags using(id_tag)
+JOIN articles using(id_article)
+WHERE url='web' AND status=1
+
+5.1
+SELECT * FROM users
+WHERE login='ivan'
+5.2
+SELECT * FROM articles
+WHERE id_user=3 AND status=1
+ORDER BY dt DESC

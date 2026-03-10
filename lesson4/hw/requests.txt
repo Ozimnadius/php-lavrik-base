@@ -1,0 +1,17 @@
+1. Все категории с сортировкой по названию
+SELECT * FROM categories ORDER BY name ASC;
+
+2. Все статьи в категории с сортировкой по дате создания
+SELECT articles.*, categories.name AS category_name FROM articles JOIN categories USING (id_category) WHERE categories.id_category = :id_category ORDER BY articles.created_at DESC;
+
+3. Получить статью по url
+SELECT * FROM articles WHERE slug = :slug;
+
+4. Добавить новую статью
+INSERT INTO articles (id_category, title, slug, content) VALUES (:id_category, :title, :slug, :content);
+
+5. Редактирование статьи
+UPDATE articles SET id_category = :id_category, title = :title, slug = :slug, content = :content WHERE id_article = :id_article;
+
+6. Удаление статьи
+DELETE FROM articles WHERE id_article = :id_article;

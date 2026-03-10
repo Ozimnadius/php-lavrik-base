@@ -12,7 +12,7 @@ if (empty($slug)) {
 }
 
 $category = getCategoryBySlug($slug);
-$rows = getArticlesByCategory((int)$category['id_category']);
+$rows = getArticlesByCategoryId((int)$category['id_category']);
 ?>
 
 <div class="articles">

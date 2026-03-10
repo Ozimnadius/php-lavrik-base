@@ -8,7 +8,7 @@ function getAllCategories(): array {
   return $query->fetchAll();
 }
 
-function getCategoryBySlug(string $slug): array {
+function getCategoryBySlug(string $slug): array|false {
   $sql = "SELECT * FROM categories WHERE slug = :slug;";
   $query = dbQuery($sql, ['slug' => $slug]);
   return $query->fetch();

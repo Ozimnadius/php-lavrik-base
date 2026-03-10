@@ -4,7 +4,6 @@ include_once('model/categories.php');
 include_once('model/articles.php');
 
 $slug = $_GET['slug'] ?? '';
-
 if (empty($slug)) {
   // Перенаправляем на главную страницу
   header('Location: index.php');
@@ -12,6 +11,11 @@ if (empty($slug)) {
 }
 
 $category = getCategoryBySlug($slug);
+if (!$category) {
+  // Перенаправляем на главную страницу, если категория не найдена
+  header('Location: index.php');
+  exit();
+}
 $rows = getArticlesByCategoryId((int)$category['id_category']);
 ?>
 

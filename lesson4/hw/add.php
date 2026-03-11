@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $fields['content'] = trim($_POST['content']);
   $fields['slug'] = trim($_POST['slug']);
 
-  if ($fields['name'] === '' || $fields['text'] === '' || $fields['id_category'] === '' || $fields['slug'] === '') {
+  if ($fields['title'] === '' || $fields['content'] === '' || $fields['id_category'] === '' || $fields['slug'] === '') {
     $err = 'Заполните все поля!';
   } else {
     addArticle($fields);
@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <br>
   Content:<br>
   <textarea name="content"
-            id=""
             cols="30"
             rows="10"
   ><?= $fields['content'] ?></textarea>

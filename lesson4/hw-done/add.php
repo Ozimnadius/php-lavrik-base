@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($fields['title'] === '' || $fields['content'] === '' || $fields['id_category'] === '' || $fields['slug'] === '') {
     $err = 'Заполните все поля!';
   } else {
-    addArticle($fields);
-    header('Location: index.php');
+    $articleSlug = addArticle($fields);
+    header('Location: article.php?slug=' . $articleSlug);
     exit();
   }
 }

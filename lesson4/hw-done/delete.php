@@ -2,8 +2,6 @@
 declare(strict_types=1);
 include_once('model/articles.php');
 
-
-
 $id = (int)($_GET['id'] ?? '');
 $post = getArticleById($id);
 $hasPost = ($post !== null);

@@ -8,7 +8,6 @@ $id = (int) ($_GET['id'] ?? '');
 $post = getArticleById($id);
 $categories = getAllCategories();
 $hasPost = ($post !== null);
-
 $fields = [
   'id_article' => $id,
   'title' => '',
@@ -21,7 +20,7 @@ $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $fields['title'] = trim($_POST['title']);
-  $fields['id_category'] = trim($_POST['category']);
+  $fields['id_category'] = trim($_POST['id_category']);
   $fields['content'] = trim($_POST['content']);
   $fields['slug'] = trim($_POST['slug']);
 
@@ -50,8 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         >
           <? foreach ($categories as $category): ?>
-            <option <?if ($post['id_category']==$category['id_category']):?>selected<?endif;?> value="<?= $category['id_category']
-            ?>"><?= $category['name']
+            <option <? if ($post['id_category'] == $category['id_category']): ?>selected<? endif; ?>
+                    value="<?= $category['id_category']
+                    ?>"
+            ><?= $category['name']
               ?></option>
           <? endforeach; ?>
         </select>

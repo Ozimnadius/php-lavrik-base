@@ -7,7 +7,7 @@ include_once('model/articles.php');
 $id = (int) ($_GET['id'] ?? '');
 $post = getArticleById($id);
 $categories = getAllCategories();
-$hasPost = ($post !== null);
+$hasPost = ($post !== false);
 $fields = [
   'id_article' => $id,
   'title' => '',
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         >
         <br>
         Категория:<br>
-        <select name="category"
+        <select name="id_category"
 
         >
           <? foreach ($categories as $category): ?>

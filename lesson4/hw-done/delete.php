@@ -4,7 +4,7 @@ include_once('model/articles.php');
 
 $id = (int)($_GET['id'] ?? '');
 $post = getArticleById($id);
-$hasPost = ($post !== null);
+$hasPost = ($post !== false);
 
 ?>
 <? if ($hasPost): ?>

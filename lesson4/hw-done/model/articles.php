@@ -78,9 +78,7 @@ function editArticle(array $fields): bool {
  * @return string
  */
 function addArticle(array $fields): string {
-  $sql = "INSERT INTO articles (id_category, title, slug, content) VALUES (:id_category, :title, :slug, :content);";
-  dbQuery($sql, $fields);
-  $db = dbInstance();
-  $articleId = $db->lastInsertId();
-  return getArticleById((int)$articleId)['slug'];
+ $sql = "INSERT INTO articles (id_category, title, slug, content) VALUES (:id_category, :title, :slug, :content);";
+ dbQuery($sql, $fields);
+ return $fields['slug'];
 }

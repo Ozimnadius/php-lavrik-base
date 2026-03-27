@@ -2,7 +2,6 @@
 include_once __DIR__ . '/core/functions.php';
 $cname = $_GET['c'] ?? 'index';
 
-
 if (!preg_match('~^[a-z][a-z0-9_]*$~i', $cname)) {
   show404();
 }

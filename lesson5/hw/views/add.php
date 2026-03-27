@@ -24,8 +24,8 @@
   ><?= $fields['content'] ?></textarea>
   <button>Send</button>
   <div class="error-list">
-    <? foreach($validateErrors as $error): ?>
-      <p><?=$error?></p>
+    <? foreach ($validateErrors as $error): ?>
+      <p><?= $error ?></p>
     <? endforeach; ?>
   </div>
 </form>

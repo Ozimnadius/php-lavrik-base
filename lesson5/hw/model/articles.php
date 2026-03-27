@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-include_once('core/db.php');
+include_once 'core/db.php';
 
 /**
  * Возвращает все статьи из указанной категории

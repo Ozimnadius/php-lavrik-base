@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-include_once('model/categories.php');
+include_once 'model/categories.php';
 
 $rows = getAllCategories();
 

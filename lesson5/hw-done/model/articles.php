@@ -50,13 +50,13 @@ function deleteArticle(int $id): bool
  *   - title: Заголовок
  *   - slug: Slug
  *   - content: Содержание
- * @return bool True если обновление успешно
+ * @return void
  */
-function editArticle(array $fields): bool
+function editArticle(int $id, array $fields): void
 {
   $sql = "UPDATE articles SET id_category = :id_category, title = :title, content = :content WHERE id_article = :id_article;";
+  $fields['id_article'] = $id;
   $query = dbQuery($sql, $fields);
-  return true;
 }
 
 /**

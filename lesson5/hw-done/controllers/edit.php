@@ -15,11 +15,10 @@ if ($article === false) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $fields = extractFields($_POST, ['title', 'content', 'id_category']);
-  $fields['id_article'] = $id;
   $validateErrors = articleValidate($fields);
 
   if (empty($validateErrors)) {
-    editArticle($fields);
+    editArticle($id, $fields);
     header("Location: index.php?c=article&id=$id");
     exit();
   }

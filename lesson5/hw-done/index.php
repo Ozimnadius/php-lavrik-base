@@ -1,8 +1,8 @@
 <?php
-include_once __DIR__ . '/core/functions.php';
+include_once __DIR__ . '/core/systems.php';
 $cname = $_GET['c'] ?? 'index';
 
-if (!preg_match('~^[a-z][a-z0-9_]*$~i', $cname)) {
+if (checkControllerName($cname)) {
   show404();
 }
 

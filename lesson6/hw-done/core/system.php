@@ -13,3 +13,10 @@ function template(string $path, array $vars = []): string
   include($systemTemplateRendererIntoFullPath);
   return ob_get_clean();
 }
+
+function fail404(): void
+{
+  header('HTTP/1.1 404 Not Found');
+  $pageTitle = 'Ошибка 404';
+  $pageContent = template('errors/v_404');
+}

@@ -10,6 +10,7 @@ $pageContent = '';
 if (checkControllerName($cname) && file_exists($path)) {
   include_once($path);
 } else {
+  header('HTTP/1.1 404 Not Found');
   $pageContent = template('errors/v_404');
 }
 

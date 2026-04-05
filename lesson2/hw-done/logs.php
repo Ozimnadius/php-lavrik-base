@@ -6,15 +6,17 @@ $logs = getFiles();
 ?>
 
 <div class="logs">
-    <h3>Logs</h3>
-    <ul>
-        <? foreach ($logs as $id => $log): ?>
-            <li>
-                <a href="log.php?id=<?= $log; ?>" class="log">
-                    <?= $log; ?>
-                </a>
-            </li>
-        <? endforeach; ?>
-    </ul>
+  <h3>Logs</h3>
+  <ul>
+    <? foreach ($logs as $id => $log): ?>
+      <li>
+        <a href="log.php?id=<?= $log; ?>"
+           class="log"
+        >
+          <?= $log; ?>
+        </a>
+      </li>
+    <? endforeach; ?>
+  </ul>
 </div>
 	

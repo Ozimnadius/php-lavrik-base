@@ -18,17 +18,17 @@ use Twig\Node\Node;
 
 abstract class AbstractUnary extends AbstractExpression
 {
-    public function __construct(Node $node, int $lineno)
-    {
-        parent::__construct(['node' => $node], [], $lineno);
-    }
+  public function __construct(Node $node, int $lineno)
+  {
+    parent::__construct(['node' => $node], [], $lineno);
+  }
 
-    public function compile(Compiler $compiler): void
-    {
-        $compiler->raw(' ');
-        $this->operator($compiler);
-        $compiler->subcompile($this->getNode('node'));
-    }
+  public function compile(Compiler $compiler): void
+  {
+    $compiler->raw(' ');
+    $this->operator($compiler);
+    $compiler->subcompile($this->getNode('node'));
+  }
 
-    abstract public function operator(Compiler $compiler): Compiler;
+  abstract public function operator(Compiler $compiler): Compiler;
 }

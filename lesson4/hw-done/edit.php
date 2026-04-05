@@ -4,7 +4,7 @@ include_once('model/categories.php');
 include_once('model/articles.php');
 
 
-$id = (int) ($_GET['id'] ?? '');
+$id = (int)($_GET['id'] ?? '');
 $post = getArticleById($id);
 $categories = getAllCategories();
 $hasPost = ($post !== false);

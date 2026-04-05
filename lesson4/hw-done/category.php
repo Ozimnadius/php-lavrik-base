@@ -14,7 +14,7 @@ $rows = getArticlesByCategoryId((int)$category['id_category']);
 ?>
 
 <div class="articles">
-  <h1><?=$category['name'] ?></h1>
+  <h1><?= $category['name'] ?></h1>
   <div class="articles__list">
     <? foreach ($rows as $row): ?>
       <a href="article.php?slug=<?= $row['slug'] ?>"

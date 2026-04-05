@@ -16,8 +16,8 @@ use Twig\Compiler;
 
 class BitwiseAndBinary extends AbstractBinary
 {
-    public function operator(Compiler $compiler): Compiler
-    {
-        return $compiler->raw('&');
-    }
+  public function operator(Compiler $compiler): Compiler
+  {
+    return $compiler->raw('&');
+  }
 }

@@ -22,65 +22,64 @@ use Twig\Node\Node;
  */
 class BlockReferenceExpression extends AbstractExpression
 {
-    public function __construct(Node $name, Node $template = null, int $lineno, string $tag = null)
-    {
-        $nodes = ['name' => $name];
-        if (null !== $template) {
-            $nodes['template'] = $template;
-        }
-
-        parent::__construct($nodes, ['is_defined_test' => false, 'output' => false], $lineno, $tag);
+  public function __construct(Node $name, Node $template = null, int $lineno, string $tag = null)
+  {
+    $nodes = ['name' => $name];
+    if (null !== $template) {
+      $nodes['template'] = $template;
     }
 
-    public function compile(Compiler $compiler): void
-    {
-        if ($this->getAttribute('is_defined_test')) {
-            $this->compileTemplateCall($compiler, 'hasBlock');
-        } else {
-            if ($this->getAttribute('output')) {
-                $compiler->addDebugInfo($this);
+    parent::__construct($nodes, ['is_defined_test' => false, 'output' => false], $lineno, $tag);
+  }
 
-                $this
-                    ->compileTemplateCall($compiler, 'displayBlock')
-                    ->raw(";\n");
-            } else {
-                $this->compileTemplateCall($compiler, 'renderBlock');
-            }
-        }
+  public function compile(Compiler $compiler): void
+  {
+    if ($this->getAttribute('is_defined_test')) {
+      $this->compileTemplateCall($compiler, 'hasBlock');
+    } else {
+      if ($this->getAttribute('output')) {
+        $compiler->addDebugInfo($this);
+
+        $this
+          ->compileTemplateCall($compiler, 'displayBlock')
+          ->raw(";\n");
+      } else {
+        $this->compileTemplateCall($compiler, 'renderBlock');
+      }
+    }
+  }
+
+  private function compileTemplateCall(Compiler $compiler, string $method): Compiler
+  {
+    if (!$this->hasNode('template')) {
+      $compiler->write('$this');
+    } else {
+      $compiler
+        ->write('$this->loadTemplate(')
+        ->subcompile($this->getNode('template'))
+        ->raw(', ')
+        ->repr($this->getTemplateName())
+        ->raw(', ')
+        ->repr($this->getTemplateLine())
+        ->raw(')');
     }
 
-    private function compileTemplateCall(Compiler $compiler, string $method): Compiler
-    {
-        if (!$this->hasNode('template')) {
-            $compiler->write('$this');
-        } else {
-            $compiler
-                ->write('$this->loadTemplate(')
-                ->subcompile($this->getNode('template'))
-                ->raw(', ')
-                ->repr($this->getTemplateName())
-                ->raw(', ')
-                ->repr($this->getTemplateLine())
-                ->raw(')')
-            ;
-        }
+    $compiler->raw(sprintf('->%s', $method));
 
-        $compiler->raw(sprintf('->%s', $method));
+    return $this->compileBlockArguments($compiler);
+  }
 
-        return $this->compileBlockArguments($compiler);
+  private function compileBlockArguments(Compiler $compiler): Compiler
+  {
+    $compiler
+      ->raw('(')
+      ->subcompile($this->getNode('name'))
+      ->raw(', $context');
+
+    if (!$this->hasNode('template')) {
+      $compiler->raw(', $blocks');
     }
 
-    private function compileBlockArguments(Compiler $compiler): Compiler
-    {
-        $compiler
-            ->raw('(')
-            ->subcompile($this->getNode('name'))
-            ->raw(', $context');
-
-        if (!$this->hasNode('template')) {
-            $compiler->raw(', $blocks');
-        }
-
-        return $compiler->raw(')');
-    }
+    return $compiler->raw(')');
+  }
 }

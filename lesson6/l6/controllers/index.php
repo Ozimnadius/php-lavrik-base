@@ -6,5 +6,5 @@ $template = $isTable ? 'v_index_table' : 'v_index';
 
 $pageTitle = 'All messages';
 $pageContent = template("messages/$template", [
-	'messages' => $messages
+  'messages' => $messages
 ]);

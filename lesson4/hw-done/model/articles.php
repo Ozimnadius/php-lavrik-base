@@ -4,11 +4,12 @@ include_once('model/db.php');
 
 /**
  * Возвращает все статьи из указанной категории
- * 
+ *
  * @param int $id ID категории
  * @return array Массив статей
  */
-function getArticlesByCategoryId(int $id): array {
+function getArticlesByCategoryId(int $id): array
+{
   $sql = "SELECT * FROM articles WHERE id_category = :id_category ORDER BY created_at DESC;";
   $query = dbQuery($sql, ['id_category' => $id]);
   return $query->fetchAll();
@@ -16,11 +17,12 @@ function getArticlesByCategoryId(int $id): array {
 
 /**
  * Возвращает статью по её slug (человеко-понятный URL)
- * 
+ *
  * @param string $slug Slug статьи
  * @return array|false Массив данных статьи или false если не найдена
  */
-function getArticleBySlug(string $slug): array|false {
+function getArticleBySlug(string $slug): array|false
+{
   $sql = "SELECT * FROM articles WHERE slug = :slug;";
   $query = dbQuery($sql, ['slug' => $slug]);
   return $query->fetch();
@@ -28,23 +30,28 @@ function getArticleBySlug(string $slug): array|false {
 
 /**
  * Возвращает статью по её ID
- * 
+ *
  * @param int $id ID статьи
  * @return array|false Массив данных статьи или false если не найдена
  */
-function getArticleById(int $id): array|false {
-  $sql = "SELECT * FROM articles WHERE id_article = :id_article;";
+function getArticleById(int $id): array|false
+{
+  $sql = "SELECT articles.*, categories.name AS category_name
+          FROM articles
+          LEFT JOIN categories ON categories.id_category = articles.id_category
+          WHERE articles.id_article = :id_article;";
   $query = dbQuery($sql, ['id_article' => $id]);
   return $query->fetch();
 }
 
 /**
  * Удаляет статью по её ID
- * 
+ *
  * @param int $id ID статьи
  * @return bool True если удаление успешно, false если статья не найдена
  */
-function deleteArticle(int $id): bool {
+function deleteArticle(int $id): bool
+{
   $sql = "DELETE FROM articles WHERE id_article = :id_article;";
   $query = dbQuery($sql, ['id_article' => $id]);
   return $query->rowCount() > 0;
@@ -52,7 +59,7 @@ function deleteArticle(int $id): bool {
 
 /**
  * Обновляет данные существующей статьи
- * 
+ *
  * @param array $fields Массив с полями статьи:
  *   - id_article: ID статьи
  *   - id_category: ID категории
@@ -61,7 +68,8 @@ function deleteArticle(int $id): bool {
  *   - content: Содержание
  * @return bool True если обновление успешно
  */
-function editArticle(array $fields): bool {
+function editArticle(array $fields): bool
+{
   $sql = "UPDATE articles SET id_category = :id_category, title = :title, slug = :slug, content = :content WHERE id_article = :id_article;";
   $query = dbQuery($sql, $fields);
   return true;
@@ -69,7 +77,7 @@ function editArticle(array $fields): bool {
 
 /**
  * Добавляет новую статью в базу данных
- * 
+ *
  * @param array $fields Массив с полями статьи:
  *   - id_category: ID категории
  *   - title: Заголовок
@@ -77,8 +85,9 @@ function editArticle(array $fields): bool {
  *   - content: Содержание
  * @return string
  */
-function addArticle(array $fields): string {
- $sql = "INSERT INTO articles (id_category, title, slug, content) VALUES (:id_category, :title, :slug, :content);";
- dbQuery($sql, $fields);
- return $fields['slug'];
+function addArticle(array $fields): string
+{
+  $sql = "INSERT INTO articles (id_category, title, slug, content) VALUES (:id_category, :title, :slug, :content);";
+  dbQuery($sql, $fields);
+  return $fields['slug'];
 }

@@ -7,19 +7,18 @@ $id = (int)$strId;
 $message = messagesOne($id);
 $hasMsg = $message !== false; // $message !== null;
 
-if($hasMsg){
-	$pageTitle = $message['name'];
-	$pageH1 = 'One message';
+if ($hasMsg) {
+  $pageTitle = $message['name'];
+  $pageH1 = 'One message';
 
-	$pageLeft = template('messages/v_message_menu');
-	$pageContent = template('messages/v_message', [
-		'message' => $message
-	]);
+  $pageLeft = template('messages/v_message_menu');
+  $pageContent = template('messages/v_message', [
+    'message' => $message
+  ]);
 
-	$pageTemplate = 'v_main2c';
-}
-else{
-	header('HTTP/1.1 404 Not Found');
-	$pageContent = template('errors/v_404');
+  $pageTemplate = 'v_main2c';
+} else {
+  header('HTTP/1.1 404 Not Found');
+  $pageContent = template('errors/v_404');
 }
 

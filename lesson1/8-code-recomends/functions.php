@@ -1,11 +1,13 @@
 <?php
-	declare(strict_types=1);
+declare(strict_types=1);
 
-	function getArticle(){
+function getArticle()
+{
 
-	}
+}
 
 
-	function checkId(string $id) : bool{
-		return ctype_digit($id);
-	}
+function checkId(string $id): bool
+{
+  return ctype_digit($id);
+}

@@ -16,8 +16,8 @@ use Twig\Compiler;
 
 class ModBinary extends AbstractBinary
 {
-    public function operator(Compiler $compiler): Compiler
-    {
-        return $compiler->raw('%');
-    }
+  public function operator(Compiler $compiler): Compiler
+  {
+    return $compiler->raw('%');
+  }
 }

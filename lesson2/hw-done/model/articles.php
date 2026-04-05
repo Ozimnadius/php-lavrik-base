@@ -9,7 +9,7 @@ declare(strict_types=1);
  */
 function getArticles(): array
 {
-    return json_decode(file_get_contents('db/articles.json'), true);
+  return json_decode(file_get_contents('db/articles.json'), true);
 }
 
 /**
@@ -22,18 +22,18 @@ function getArticles(): array
  */
 function addArticle(string $title, string $content): bool
 {
-    $articles = getArticles();
+  $articles = getArticles();
 
-    $lastId = end($articles)['id'];
-    $id = $lastId + 1;
+  $lastId = end($articles)['id'];
+  $id = $lastId + 1;
 
-    $articles[$id] = [
-        'id' => $id,
-        'title' => $title,
-        'content' => $content
-    ];
+  $articles[$id] = [
+    'id' => $id,
+    'title' => $title,
+    'content' => $content
+  ];
 
-    return saveArticles($articles);
+  return saveArticles($articles);
 }
 
 /**
@@ -47,15 +47,15 @@ function addArticle(string $title, string $content): bool
  */
 function editArticle(int $id, string $title, string $content): bool
 {
-    $articles = getArticles();
+  $articles = getArticles();
 
-    $articles[$id] = [
-        'id' => $id,
-        'title' => $title,
-        'content' => $content
-    ];
+  $articles[$id] = [
+    'id' => $id,
+    'title' => $title,
+    'content' => $content
+  ];
 
-    return saveArticles($articles);
+  return saveArticles($articles);
 }
 
 /**
@@ -67,14 +67,14 @@ function editArticle(int $id, string $title, string $content): bool
  */
 function removeArticle(int $id): bool
 {
-    $articles = getArticles();
+  $articles = getArticles();
 
-    if (isset($articles[$id])) {
-        unset($articles[$id]);
-        return saveArticles($articles);
-    }
+  if (isset($articles[$id])) {
+    unset($articles[$id]);
+    return saveArticles($articles);
+  }
 
-    return false;
+  return false;
 }
 
 /**
@@ -86,5 +86,5 @@ function removeArticle(int $id): bool
  */
 function saveArticles(array $articles): bool
 {
-    return (bool)file_put_contents('db/articles.json', json_encode($articles));
+  return (bool)file_put_contents('db/articles.json', json_encode($articles));
 }

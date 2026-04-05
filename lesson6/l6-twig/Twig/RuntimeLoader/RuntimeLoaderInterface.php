@@ -18,10 +18,10 @@ namespace Twig\RuntimeLoader;
  */
 interface RuntimeLoaderInterface
 {
-    /**
-     * Creates the runtime implementation of a Twig element (filter/function/test).
-     *
-     * @return object|null The runtime instance or null if the loader does not know how to create the runtime for this class
-     */
-    public function load(string $class);
+  /**
+   * Creates the runtime implementation of a Twig element (filter/function/test).
+   *
+   * @return object|null The runtime instance or null if the loader does not know how to create the runtime for this class
+   */
+  public function load(string $class);
 }

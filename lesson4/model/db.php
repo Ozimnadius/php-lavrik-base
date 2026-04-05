@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-function dbInstance(): PDO {
+function dbInstance(): PDO
+{
   static $db;
 
   if ($db === null) {
@@ -15,7 +16,8 @@ function dbInstance(): PDO {
   return $db;
 }
 
-function dbQuery(string $sql, array $params = []): PDOStatement {
+function dbQuery(string $sql, array $params = []): PDOStatement
+{
   $db = dbInstance();
   $query = $db->prepare($sql);
   $query->execute($params);
@@ -23,7 +25,8 @@ function dbQuery(string $sql, array $params = []): PDOStatement {
   return $query;
 }
 
-function dbCheckError(PDOStatement $query): bool {
+function dbCheckError(PDOStatement $query): bool
+{
   $errInfo = $query->errorInfo();
 
   if ($errInfo[0] !== PDO::ERR_NONE) {

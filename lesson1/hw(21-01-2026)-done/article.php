@@ -3,7 +3,7 @@ declare(strict_types=1);
 include_once('functions.php');
 $articles = getArticles();
 
-$id = (int) ($_GET['id'] ?? '');
+$id = (int)($_GET['id'] ?? '');
 $post = $articles[$id] ?? null;
 $hasPost = ($post !== null);
 

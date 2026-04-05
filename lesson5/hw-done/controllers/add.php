@@ -24,5 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $validateErrors = [];
 }
 
-include 'views/add.php';
+$pageTitle = 'Add message';
+$pageContent = template('article/add', [
+  'fields' => $fields,
+  'categories' => $categories,
+  'validateErrors' => $validateErrors
+]);
+
 ?>

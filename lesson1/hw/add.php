@@ -1,14 +1,14 @@
 <?php
 
-	include_once('functions.php');
+include_once('functions.php');
 
-	/*
-		your code here
-		check request method
-		read POST-data
-		validate data
-		call addArticle
-	*/
+/*
+  your code here
+  check request method
+  read POST-data
+  validate data
+  call addArticle
+*/
 
 ?>
 Form or message here

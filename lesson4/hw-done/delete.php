@@ -8,14 +8,14 @@ $hasPost = ($post !== false);
 
 ?>
 <? if ($hasPost): ?>
-    <? $isDeleted = deleteArticle($id); ?>
-    <? if ($isDeleted): ?>
-        <h1>Deleted</h1>
-    <? else: ?>
-        <h1>Not Deleted</h1>
-    <? endif; ?>
+  <? $isDeleted = deleteArticle($id); ?>
+  <? if ($isDeleted): ?>
+    <h1>Deleted</h1>
+  <? else: ?>
+    <h1>Not Deleted</h1>
+  <? endif; ?>
 <? else: ?>
-    <h1>Error!</h1>
+  <h1>Error!</h1>
 <? endif; ?>
 
 <hr>

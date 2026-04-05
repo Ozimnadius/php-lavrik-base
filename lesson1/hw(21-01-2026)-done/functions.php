@@ -8,7 +8,8 @@
  * @return array Массив, содержащий все статьи. Каждая статья представлена в виде ассоциативного
  * массива, где ключ - это идентификатор статьи, а значение - это сама статья.
  */
-function getArticles(): array {
+function getArticles(): array
+{
   return json_decode(file_get_contents('db/articles.json'), true);
 }
 
@@ -19,7 +20,8 @@ function getArticles(): array {
  * @param string $content Содержимое статьи.
  * @return bool Возвращает true, если статья успешно добавлена, и false в противном случае.
  */
-function addArticle(string $title, string $content): bool {
+function addArticle(string $title, string $content): bool
+{
   $articles = getArticles();
 
   $lastId = end($articles)['id'];
@@ -41,7 +43,8 @@ function addArticle(string $title, string $content): bool {
  * @param int $id Идентификатор статьи.
  * @return bool Возвращает true, если статья успешно удалена, и false в противном случае.
  */
-function removeArticle(int $id): bool {
+function removeArticle(int $id): bool
+{
   $articles = getArticles();
 
   if (isset($articles[$id])) {
@@ -60,7 +63,8 @@ function removeArticle(int $id): bool {
  * массива, где ключ - это идентификатор статьи, а значение - это сама статья.
  * @return bool Возвращает true, если статьи успешно сохранены, и false в противном случае.
  */
-function saveArticles(array $articles): bool {
+function saveArticles(array $articles): bool
+{
   file_put_contents('db/articles.json', json_encode($articles));
   return true;
 }
@@ -73,7 +77,8 @@ function saveArticles(array $articles): bool {
  * @param string $content Содержимое статьи.
  * @return bool Возвращает true, если статья успешно изменена, и false в противном случае.
  */
-function editArticle(int $id, string $title, string $content): bool {
+function editArticle(int $id, string $title, string $content): bool
+{
   $articles = getArticles();
   $article = $articles[$id];
 

@@ -1,6 +1,6 @@
 <?php
 
-const BASE_URL = '/php1/l6/';
+const BASE_URL = '/lesson6/l6/';
 
 const DB_HOST = 'localhost';
 const DB_NAME = 'php1simple';
@@ -13,6 +13,6 @@ include_once('core/system.php');
 
 include_once('model/messages.php');
 
-spl_autoload_register(function($classname){
-	include_once str_replace('\\', '/', $classname) . '.php';
+spl_autoload_register(function ($classname) {
+  include_once str_replace('\\', '/', $classname) . '.php';
 });

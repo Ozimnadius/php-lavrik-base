@@ -1,10 +1,11 @@
 <?php
 
-	$a = 1;
+$a = 1;
 
-	function b(&$a){
-		$a++;
-	}
+function b(&$a)
+{
+  $a++;
+}
 
-	b($a);
-	echo $a;
+b($a);
+echo $a;

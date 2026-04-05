@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+$categories = getAllCategories();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $fields = extractFields($_POST, ['title', 'content', 'id_category']);
+  $validateErrors = articleValidate($fields);
+
+  if (empty($validateErrors)) {
+    $id = addArticle($fields);
+    header("Location: index.php?c=article&id=$id");
+    exit();
+  }
+} else {
+  $fields = [
+    'title' => '',
+    'id_category' => '',
+    'content' => '',
+  ];
+  $validateErrors = [];
+}
+
+$pageTitle = 'Add article';
+$pageContent = template('article/edit', [
+  'fields' => $fields,
+  'categories' => $categories,
+  'validateErrors' => $validateErrors
+]);

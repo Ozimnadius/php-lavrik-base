@@ -19,47 +19,47 @@ use Twig\Node\Node;
 
 abstract class NodeTestCase extends TestCase
 {
-    abstract public function getTests();
+  abstract public function getTests();
 
-    /**
-     * @dataProvider getTests
-     */
-    public function testCompile($node, $source, $environment = null, $isPattern = false)
-    {
-        $this->assertNodeCompilation($source, $node, $environment, $isPattern);
+  /**
+   * @dataProvider getTests
+   */
+  public function testCompile($node, $source, $environment = null, $isPattern = false)
+  {
+    $this->assertNodeCompilation($source, $node, $environment, $isPattern);
+  }
+
+  public function assertNodeCompilation($source, Node $node, Environment $environment = null, $isPattern = false)
+  {
+    $compiler = $this->getCompiler($environment);
+    $compiler->compile($node);
+
+    if ($isPattern) {
+      $this->assertStringMatchesFormat($source, trim($compiler->getSource()));
+    } else {
+      $this->assertEquals($source, trim($compiler->getSource()));
     }
+  }
 
-    public function assertNodeCompilation($source, Node $node, Environment $environment = null, $isPattern = false)
-    {
-        $compiler = $this->getCompiler($environment);
-        $compiler->compile($node);
+  protected function getCompiler(Environment $environment = null)
+  {
+    return new Compiler(null === $environment ? $this->getEnvironment() : $environment);
+  }
 
-        if ($isPattern) {
-            $this->assertStringMatchesFormat($source, trim($compiler->getSource()));
-        } else {
-            $this->assertEquals($source, trim($compiler->getSource()));
-        }
-    }
+  protected function getEnvironment()
+  {
+    return new Environment(new ArrayLoader([]));
+  }
 
-    protected function getCompiler(Environment $environment = null)
-    {
-        return new Compiler(null === $environment ? $this->getEnvironment() : $environment);
-    }
+  protected function getVariableGetter($name, $line = false)
+  {
+    $line = $line > 0 ? "// line {$line}\n" : '';
 
-    protected function getEnvironment()
-    {
-        return new Environment(new ArrayLoader([]));
-    }
+    return sprintf('%s($context["%s"] ?? null)', $line, $name);
+  }
 
-    protected function getVariableGetter($name, $line = false)
-    {
-        $line = $line > 0 ? "// line {$line}\n" : '';
-
-        return sprintf('%s($context["%s"] ?? null)', $line, $name);
-    }
-
-    protected function getAttributeGetter()
-    {
-        return 'twig_get_attribute($this->env, $this->source, ';
-    }
+  protected function getAttributeGetter()
+  {
+    return 'twig_get_attribute($this->env, $this->source, ';
+  }
 }

@@ -15,8 +15,8 @@ use Twig\Compiler;
 
 class PowerBinary extends AbstractBinary
 {
-    public function operator(Compiler $compiler): Compiler
-    {
-        return $compiler->raw('**');
-    }
+  public function operator(Compiler $compiler): Compiler
+  {
+    return $compiler->raw('**');
+  }
 }

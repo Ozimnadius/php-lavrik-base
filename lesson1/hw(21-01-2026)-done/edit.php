@@ -3,7 +3,7 @@ declare(strict_types=1);
 include_once('functions.php');
 $articles = getArticles();
 
-$id = (int) ($_GET['id'] ?? '');
+$id = (int)($_GET['id'] ?? '');
 $post = $articles[$id] ?? null;
 $hasPost = ($post !== null);
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Title:<br>
         <input type="text"
                name="title"
-               value="<?=$title ?>"
+               value="<?= $title ?>"
         >
         <br>
         Content:<br>
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   id=""
                   cols="30"
                   rows="10"
-        ><?=$content ?></textarea>
+        ><?= $content ?></textarea>
         <button>Send</button>
         <p><?= $err ?></p>
       </form>

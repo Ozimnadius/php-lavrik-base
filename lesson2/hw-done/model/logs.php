@@ -11,15 +11,15 @@ declare(strict_types=1);
  */
 function addLog(): bool
 {
-    $logName = date("Y-m-d");
-    $data = [
-        "time" => date("H:i:s"),
-        'ip' => $_SERVER['REMOTE_ADDR'],
-        'uri' => $_SERVER['REQUEST_URI'],
-        'referer' => $_SERVER['HTTP_REFERER'] ?? ''
-    ];
-    $log = json_encode($data) . "\n";
-    return (bool)file_put_contents("logs/$logName.txt", $log, FILE_APPEND);
+  $logName = date("Y-m-d");
+  $data = [
+    "time" => date("H:i:s"),
+    'ip' => $_SERVER['REMOTE_ADDR'],
+    'uri' => $_SERVER['REQUEST_URI'],
+    'referer' => $_SERVER['HTTP_REFERER'] ?? ''
+  ];
+  $log = json_encode($data) . "\n";
+  return (bool)file_put_contents("logs/$logName.txt", $log, FILE_APPEND);
 }
 
 /**
@@ -32,10 +32,10 @@ function addLog(): bool
  */
 function getFiles(): array
 {
-    $files = scandir('logs');
-    return array_filter($files, function ($f) {
-        return is_file("logs/$f") && checkFileName($f);
-    });
+  $files = scandir('logs');
+  return array_filter($files, function ($f) {
+    return is_file("logs/$f") && checkFileName($f);
+  });
 }
 
 /**
@@ -48,15 +48,15 @@ function getFiles(): array
  */
 function getLogs(string $file): array
 {
-    if (!hasLogFile($file)) {
-        return [];
-    }
+  if (!hasLogFile($file)) {
+    return [];
+  }
 
-    $files = file("logs/$file");
-    $logs = array_map(function ($line) {
-        return json_decode(rtrim($line), true);
-    }, $files);
-    return $logs;
+  $files = file("logs/$file");
+  $logs = array_map(function ($line) {
+    return json_decode(rtrim($line), true);
+  }, $files);
+  return $logs;
 }
 
 
@@ -71,7 +71,7 @@ function getLogs(string $file): array
  */
 function checkFileName(string $name): bool
 {
-    return !!preg_match('/^\d{4}\-\d{2}\-\d{2}\.txt$/', $name);
+  return !!preg_match('/^\d{4}\-\d{2}\-\d{2}\.txt$/', $name);
 }
 
 
@@ -87,7 +87,7 @@ function checkFileName(string $name): bool
  */
 function hasLogFile(string $file): bool
 {
-    return checkFileName($file) && file_exists("logs/$file");
+  return checkFileName($file) && file_exists("logs/$file");
 }
 
 /**
@@ -102,5 +102,5 @@ function hasLogFile(string $file): bool
  */
 function isValidUrl(string $url): bool
 {
-    return !!preg_match('/^[aA-zZ0-9-_\/\?\.=&]*$/', $url);
+  return !!preg_match('/^[aA-zZ0-9-_\/\?\.=&]*$/', $url);
 }

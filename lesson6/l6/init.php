@@ -4,7 +4,7 @@ const BASE_URL = '/lesson6/l6/';
 
 const DB_HOST = 'localhost';
 const DB_NAME = 'php1simple';
-const DB_USER= 'root';
+const DB_USER = 'root';
 const DB_PASS = '';
 
 include_once('core/arr.php');

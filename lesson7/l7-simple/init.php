@@ -1,6 +1,6 @@
 <?php
 
-const BASE_URL = '/php1/l7/';
+const BASE_URL = '/lesson7/l7/';
 
 const DB_HOST = 'localhost';
 const DB_NAME = 'php1simple';

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title><?= $title ?></title>
+  <link rel="canonical" href="<?=$canonical?>">
   <link rel="stylesheet"
         href="<?= BASE_URL ?>assets/css/bootstrap.min.css"
   >

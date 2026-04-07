@@ -1,15 +1,15 @@
 <?php
 
 const HOST = 'http://localhost';
-const BASE_URL = '/lesson7/l7-routing/';
+const BASE_URL = '/lesson7/hw/';
 
 const DB_HOST = 'localhost';
-const DB_NAME = 'php1simple';
+const DB_NAME = 'hw5';
 const DB_USER = 'root';
 const DB_PASS = '';
 
-include_once('core/arr.php');
 include_once('core/db.php');
 include_once('core/system.php');
 
-include_once('model/messages.php');
+include_once('model/articles.php');
+include_once('model/categories.php');

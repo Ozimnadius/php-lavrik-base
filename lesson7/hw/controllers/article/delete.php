@@ -15,5 +15,3 @@ if ($article) {
 } else {
   extract(make404Response());
 }
-
-?>

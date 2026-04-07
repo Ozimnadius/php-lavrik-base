@@ -31,6 +31,3 @@ if ($category) {
 } else {
   extract(make404Response());
 }
-
-
-?>

@@ -27,6 +27,4 @@ if ($category) {
   extract(make404Response());
 }
 
-?>
-
 

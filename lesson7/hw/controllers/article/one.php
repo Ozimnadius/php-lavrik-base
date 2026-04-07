@@ -27,4 +27,3 @@ if ($article) {
   extract(make404Response());
 }
 
-?>

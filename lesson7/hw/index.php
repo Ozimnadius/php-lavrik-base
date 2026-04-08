@@ -12,11 +12,17 @@ if (strpos($uri, $badUrl) === 0) {
   $routes = include('routes.php');
   $url = $_GET['querysystemurl'] ?? '';
 
+  // Берем сырой путь из реального запроса, а не только из querysystemurl
+  $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
+  $basePath = '/' . trim(BASE_URL, '/') . '/';
+  $rawUrl = preg_replace('#^' . preg_quote($basePath, '#') . '#', '', $requestPath);
+  $rawUrl = ltrim((string)$rawUrl, '/');
+
   // SEO: приводим URL к каноническому виду
-  $normalizedUrl = preg_replace('~/+~', '/', $url);
+  $normalizedUrl = preg_replace('~/+~', '/', $rawUrl);
   $normalizedUrl = trim($normalizedUrl, '/');
 
-  if ($normalizedUrl !== $url) {
+  if ($normalizedUrl !== $rawUrl) {
     header('Location: ' . BASE_URL . $normalizedUrl, true, 301);
     exit();
   }

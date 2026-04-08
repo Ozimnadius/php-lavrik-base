@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Учебный PHP-проект: категории и статьи, CRUD-операции и маршрутизация URL.">
   <title><?= $title ?></title>
   <link rel="canonical" href="<?=$canonical?>">
   <link rel="stylesheet"
@@ -50,12 +51,12 @@
     </ul>
   </div>
 </nav>
-<div class="site-content">
+<main class="site-content">
   <div class="container">
     <h1 class="mb-3"><?= $title ?></h1>
     <?= $content ?>
   </div>
-</div>
+</main>
 <footer class="site-footer">
   <div class="container">
     &copy; site about all

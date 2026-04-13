@@ -22,8 +22,7 @@
 				exit();
 			}
 		}
-	}
-	else{
+	} else{
 		$authErr = false;
 	}
 

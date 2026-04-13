@@ -28,7 +28,7 @@ function getCategoryById(int $id): array|false
 
 function editCategory(int $id, array $fields): void
 {
-  $sql = "UPDATE categories SET id_category = :id_category, name = :name WHERE id_category = :id_category;";
+  $sql = "UPDATE categories SET name = :name WHERE id_category = :id_category;";
   $fields['id_category'] = $id;
   $query = dbQuery($sql, $fields);
 }
